@@ -1,0 +1,27 @@
+apply from: '../config_base.gradle'
+
+ext {
+    android {
+        compileSdkVersion compile_sdk_version
+        buildToolsVersion build_tool_version
+
+        defaultConfig {
+            minSdkVersion min_sdk_version
+            targetSdkVersion target_sdk_version
+            versionCode retrieveVersionCode
+            versionName retrieveVersionName
+            multiDexEnabled true
+        }
+        buildTypes {
+            release {
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), '../proguard-rules.pro'
+                minifyEnabled true
+            }
+            debug {
+                minifyEnabled false
+            }
+        }
+    }
+}
+
+

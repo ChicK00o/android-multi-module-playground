@@ -1,0 +1,45 @@
+ext {
+    compile_sdk_version = 28
+    build_tool_version = "28.0.3"
+    application_id = "com.example.android_playground"
+    min_sdk_version = 21
+    target_sdk_version = 28
+
+    //APP VERSION
+    default_version_name = "1.00"
+    //keep this value for dev builds to be consistent with production builds
+    default_version_code = 1
+
+    //DEPENDENCIES and their versions
+    android_support_version = "28.0.0"
+    android_constraint_layout = "1.1.3"
+    android_multidex_version = "1.0.3"
+    dagger_version = '2.21'
+    dev_drawer_version = '1.0.3'
+    log_timber_version = '4.7.1'
+    android_lifecycle_verison = '1.1.1'
+
+
+    retrieveVersionName = project.hasProperty('version_name') ? version_name : default_version_name
+
+    retrieveVersionCode =
+            project.hasProperty('version_code') ? version_code.toInteger() : default_version_code
+
+
+    configurations.all {
+        resolutionStrategy {
+            force "com.android.support:support-compat:$android_support_version"
+            force "com.android.support:support-annotations:$android_support_version"
+            force "com.android.support:design:$android_support_version"
+            force "com.android.support:appcompat-v7:$android_support_version"
+            force "com.android.support:appcompat-v13:$android_support_version"
+            force "com.android.support:support-v13:$android_support_version"
+            force "com.android.support:gridlayout-v7:$android_support_version"
+            force "com.android.support:recyclerview-v7:$android_support_version"
+            force "com.android.support:animated-vector-drawable:$android_support_version"
+            force "com.android.support:support-multidex:$android_multidex_version"
+        }
+    }
+}
+
+
