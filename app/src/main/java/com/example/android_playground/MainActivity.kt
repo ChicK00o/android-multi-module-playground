@@ -1,6 +1,7 @@
 package com.example.android_playground
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.Gravity
@@ -11,6 +12,7 @@ import timber.log.Timber
 import com.example.core_utils.showToast
 import javax.inject.Inject
 import com.example.android_playground.databinding.ActivityMainBinding
+import com.example.feature2.Feature2Activity
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -60,6 +62,15 @@ class MainActivity : DaggerAppCompatActivity() {
                 onItemSelected { item, position ->
                     showToast("$item at $position")
                     mainActivityViewModel.setText("Hello World! $item Selected")
+                }
+            }
+
+            button {
+                text = "Move To Feature 2"
+                onClick {
+                    var intent = Intent(this.context, Feature2Activity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
         }
