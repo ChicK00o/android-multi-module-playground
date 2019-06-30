@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply from: '../config_module.gradle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -19,8 +19,6 @@ dependencies {
     implementation "com.github.antonKozyriatskyi:DevDrawer:$dev_drawer_version"
     implementation "com.jakewharton.timber:timber:$log_timber_version"
 
-    implementation "com.android.support:multidex:$android_multidex_version"
-
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
@@ -36,7 +34,7 @@ dependencies {
 
     implementation project(':core_utils')
     implementation project(':core_data')
-    implementation project(':feature2')
-    implementation project(':feature3')
-    implementation project(':feature4')
+    implementation project(':feature4a')
+    implementation project(':feature4b')
+    implementation project(':feature4scope')
 }

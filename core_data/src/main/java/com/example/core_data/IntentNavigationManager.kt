@@ -37,8 +37,14 @@ class IntentNavigationManager @Inject constructor() {
             .let { Intent(context, it) }
     }
 
-    fun goToMainActivity(context: Context) : Intent? {
-        return "com.example.android_playground.MainActivity".loadClassOrNull<Activity>()
+    fun goToFeature4(context: Context) : Intent? {
+        return "com.example.feature4.Feature4Activity".loadClassOrNull<Activity>()
             .let { Intent(context, it) }
     }
+
+    //Not Needed as no one is going to Main activity themselves
+//    fun goToMainActivity(context: Context) : Intent? {
+//        return "com.example.android_playground.MainActivity".loadClassOrNull<Activity>()
+//            .let { Intent(context, it) }
+//    }
 }

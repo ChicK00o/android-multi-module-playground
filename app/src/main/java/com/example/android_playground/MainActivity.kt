@@ -91,7 +91,6 @@ class MainActivity : DaggerAppCompatActivity() {
                     val intent = intentNavigationManager.goToFeature2(context)
                     intent?.let {
                         context.startActivity(it)
-                        finish()
                     } ?: showToast("Feature 2 not loaded")
                 }
             }
@@ -102,8 +101,17 @@ class MainActivity : DaggerAppCompatActivity() {
                     val intent = intentNavigationManager.goToFeature3(context)
                     intent?.let {
                         context.startActivity(it)
-                        finish()
                     } ?: showToast("Feature 3 not loaded")
+                }
+            }
+
+            button {
+                text = "Move To Feature 4"
+                onClick {
+                    val intent = intentNavigationManager.goToFeature4(context)
+                    intent?.let {
+                        context.startActivity(it)
+                    } ?: showToast("Feature 4 not loaded")
                 }
             }
         }

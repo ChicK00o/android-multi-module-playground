@@ -6,10 +6,6 @@ apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation "com.google.dagger:dagger:$dagger_version"
-    implementation "com.jakewharton.timber:timber:$log_timber_version"
     implementation project(':core_utils')
 }

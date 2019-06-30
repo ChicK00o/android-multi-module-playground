@@ -1,4 +1,4 @@
-package com.example.feature3
+package com.example.feature4a
 
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
@@ -10,18 +10,18 @@ import com.example.core_data.IntentNavigationManager
 import com.example.core_utils.di.ViewModelFactory
 import com.example.core_utils.identity
 import com.example.core_utils.showToast
-import com.example.feature3.databinding.ActivityFeature3Binding
+import com.example.feature4a.databinding.ActivityFeature4aBinding
 import dagger.android.support.DaggerAppCompatActivity
 import timber.log.Timber
 import javax.inject.Inject
 
-class   Feature3Activity : DaggerAppCompatActivity() {
+class Feature4aActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var mainActivityViewModel: Feature3ActivityViewModel
-    lateinit var activityMainBinding: ActivityFeature3Binding
+    lateinit var mainActivityViewModel: Feature4aActivityViewModel
+    lateinit var activityMainBinding: ActivityFeature4aBinding
 
     @Inject
     lateinit var blackBoard: BlackBoard
@@ -30,17 +30,17 @@ class   Feature3Activity : DaggerAppCompatActivity() {
     lateinit var intentNavigationManager : IntentNavigationManager
 
     @Inject
-    lateinit var repository: Feature3Repository
+    lateinit var repository: Feature4aRepository
 
     @Inject
-    lateinit var data: Feature3Data
+    lateinit var data: Feature4aData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feature3)
+        setContentView(R.layout.activity_feature4a)
 
-        mainActivityViewModel = ViewModelProviders.of(this, viewModelFactory)[Feature3ActivityViewModel::class.java]
-        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_feature3)
+        mainActivityViewModel = ViewModelProviders.of(this, viewModelFactory)[Feature4aActivityViewModel::class.java]
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_feature4a)
         activityMainBinding.viewModel = mainActivityViewModel
         activityMainBinding.lifecycleOwner = this
 
@@ -50,7 +50,7 @@ class   Feature3Activity : DaggerAppCompatActivity() {
                 text = "Enable logging"
                 onCheckedChange { isChecked ->
                     showToast("Logging enabled: $isChecked")
-                    mainActivityViewModel.setText("feature3! Check Clicked")
+                    mainActivityViewModel.setText("feature4a! Check Clicked")
                 }
             }
 
@@ -58,7 +58,7 @@ class   Feature3Activity : DaggerAppCompatActivity() {
                 text = "God mode"
                 onCheckedChange { isChecked ->
                     showToast("God mode switched: $isChecked")
-                    mainActivityViewModel.setText("feature3! God Switched")
+                    mainActivityViewModel.setText("feature4a! God Switched")
                 }
             }
 
@@ -81,7 +81,7 @@ class   Feature3Activity : DaggerAppCompatActivity() {
 
                 onItemSelected { item, position ->
                     showToast("$item at $position")
-                    mainActivityViewModel.setText("feature3! $item Selected")
+                    mainActivityViewModel.setText("feature4a! $item Selected")
                 }
             }
 

@@ -89,11 +89,7 @@ class Feature2Activity : DaggerAppCompatActivity() {
             button {
                 text = "Move To Main Activity"
                 onClick {
-                    val intent = intentNavigationManager.goToMainActivity(context)
-                    intent?.let {
-                        context.startActivity(it)
-                        finish()
-                    } ?: showToast("Main Activity not loaded")
+                    finish()
                 }
             }
 
