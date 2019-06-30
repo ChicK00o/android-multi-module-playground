@@ -1,1 +1,1 @@
-include ':app', ':core_utils', ':feature2', ':feature3'
+include ':app', ':core_utils', ':feature2', ':feature3', ':core_data'

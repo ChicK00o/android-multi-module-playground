@@ -1,7 +1,6 @@
 package com.example.android_playground
 
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.Gravity
@@ -12,8 +11,9 @@ import timber.log.Timber
 import com.example.core_utils.showToast
 import javax.inject.Inject
 import com.example.android_playground.databinding.ActivityMainBinding
-import com.example.feature2.Feature2Activity
-import com.example.feature3.Feature3Activity
+import com.example.core_data.BlackBoard
+import com.example.core_data.IntentNavigationManager
+import com.example.core_utils.identity
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -22,6 +22,18 @@ class MainActivity : DaggerAppCompatActivity() {
 
     lateinit var mainActivityViewModel: MainActivityViewModel
     lateinit var activityMainBinding: ActivityMainBinding
+
+    @Inject
+    lateinit var blackBoard: BlackBoard
+
+    @Inject
+    lateinit var intentNavigationManager: IntentNavigationManager
+
+    @Inject
+    lateinit var repository: MainActivityRepository
+
+    @Inject
+    lateinit var data: MainActivityData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +63,15 @@ class MainActivity : DaggerAppCompatActivity() {
             }
 
             button {
-                text = "Crash"
-                onClick { throw Exception("Intended crash") }
+                text = "Print Identities"
+                onClick {
+                    intentNavigationManager.printHashCode("Main")
+                    blackBoard.printHashCode("Main")
+                    this.identity("Main")
+                    mainActivityViewModel.identity("ViewModel Main")
+                    repository.identity("Repository Main")
+                    data.identity("Data Main")
+                }
             }
 
             spinner {
@@ -69,16 +88,22 @@ class MainActivity : DaggerAppCompatActivity() {
             button {
                 text = "Move To Feature 2"
                 onClick {
-                    var intent = Intent(context, Feature2Activity::class.java)
-                    context.startActivity(intent)
+                    val intent = intentNavigationManager.goToFeature2(context)
+                    intent?.let {
+                        context.startActivity(it)
+                        finish()
+                    } ?: showToast("Feature 2 not loaded")
                 }
             }
 
             button {
                 text = "Move To Feature 3"
                 onClick {
-                    var intent = Intent(context, Feature3Activity::class.java)
-                    context.startActivity(intent)
+                    val intent = intentNavigationManager.goToFeature3(context)
+                    intent?.let {
+                        context.startActivity(it)
+                        finish()
+                    } ?: showToast("Feature 3 not loaded")
                 }
             }
         }

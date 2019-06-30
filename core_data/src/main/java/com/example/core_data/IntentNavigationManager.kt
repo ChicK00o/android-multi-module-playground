@@ -1,0 +1,44 @@
+package com.example.core_data
+
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import com.example.core_utils.identity
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class IntentNavigationManager @Inject constructor() {
+
+    fun printHashCode(postfix: String) {
+        this.identity("Navigation Manager $postfix")
+    }
+
+    private val classMap = mutableMapOf<String, Class<*>>()
+
+    private inline fun <reified T : Any> Any.castOrNull() = this as? T
+
+    private fun <T> String.loadClassOrNull(): Class<out T>? =
+        classMap.getOrPut(this) {
+            try {
+                Class.forName(this)
+            } catch (e: ClassNotFoundException) {
+                return null
+            }
+        }.castOrNull()
+
+    fun goToFeature2(context: Context) : Intent? {
+        return "com.example.feature2.Feature2Activity".loadClassOrNull<Activity>()
+            .let { Intent(context, it) }
+    }
+
+    fun goToFeature3(context: Context) : Intent? {
+        return "com.example.feature3.Feature3Activity".loadClassOrNull<Activity>()
+            .let { Intent(context, it) }
+    }
+
+    fun goToMainActivity(context: Context) : Intent? {
+        return "com.example.android_playground.MainActivity".loadClassOrNull<Activity>()
+            .let { Intent(context, it) }
+    }
+}

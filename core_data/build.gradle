@@ -13,5 +13,5 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "android.arch.lifecycle:extensions:$android_lifecycle_verison"
     implementation "com.jakewharton.timber:timber:$log_timber_version"
-
+    implementation project(':core_utils')
 }
