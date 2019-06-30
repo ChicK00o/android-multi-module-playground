@@ -1,28 +1,50 @@
 package com.example.android_playground
 
-import android.support.v7.app.AppCompatActivity
+import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.Gravity
 import antonkozyriatskyi.devdrawer.DevDrawer
+import dagger.android.support.DaggerAppCompatActivity
+import di.utils.ViewModelFactory
 import timber.log.Timber
 import utils.showToast
+import javax.inject.Inject
+import com.example.android_playground.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    lateinit var mainActivityViewModel: MainActivityViewModel
+    lateinit var activityMainBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        mainActivityViewModel = ViewModelProviders.of(this, viewModelFactory)[MainActivityViewModel::class.java]
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        activityMainBinding.viewModel = mainActivityViewModel
+        activityMainBinding.lifecycleOwner = this
+
         DevDrawer.attachTo(this, gravity = Gravity.END) {
 
             checkbox {
                 text = "Enable logging"
-                onCheckedChange { isChecked -> showToast("Logging enabled: $isChecked") }
+                onCheckedChange { isChecked ->
+                    showToast("Logging enabled: $isChecked")
+                    mainActivityViewModel.setText("Hello World! Check Clicked")
+                }
             }
 
             switch {
                 text = "God mode"
-                onCheckedChange { isChecked -> showToast("God mode switched: $isChecked") }
+                onCheckedChange { isChecked ->
+                    showToast("God mode switched: $isChecked")
+                    mainActivityViewModel.setText("Hello World! God Switched")
+                }
             }
 
             button {
@@ -35,7 +57,10 @@ class MainActivity : AppCompatActivity() {
                 addItem("Dark")
                 item { "Light" }
 
-                onItemSelected { item, position -> showToast("$item at $position") }
+                onItemSelected { item, position ->
+                    showToast("$item at $position")
+                    mainActivityViewModel.setText("Hello World! $item Selected")
+                }
             }
         }
 
