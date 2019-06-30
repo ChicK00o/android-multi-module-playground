@@ -1,6 +1,7 @@
 package com.example.android_playground
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.Gravity
@@ -14,6 +15,9 @@ import com.example.android_playground.databinding.ActivityMainBinding
 import com.example.core_data.BlackBoard
 import com.example.core_data.IntentNavigationManager
 import com.example.core_utils.identity
+import com.example.feature2.Feature2Activity
+import com.example.feature3.Feature3Activity
+import com.example.feature4.Feature4Activity
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -88,30 +92,24 @@ class MainActivity : DaggerAppCompatActivity() {
             button {
                 text = "Move To Feature 2"
                 onClick {
-                    val intent = intentNavigationManager.goToFeature2(context)
-                    intent?.let {
-                        context.startActivity(it)
-                    } ?: showToast("Feature 2 not loaded")
+                    val intent = Intent(context, Feature2Activity::class.java)
+                    context.startActivity(intent)
                 }
             }
 
             button {
                 text = "Move To Feature 3"
                 onClick {
-                    val intent = intentNavigationManager.goToFeature3(context)
-                    intent?.let {
-                        context.startActivity(it)
-                    } ?: showToast("Feature 3 not loaded")
+                    val intent = Intent(context, Feature3Activity::class.java)
+                    context.startActivity(intent)
                 }
             }
 
             button {
                 text = "Move To Feature 4"
                 onClick {
-                    val intent = intentNavigationManager.goToFeature4(context)
-                    intent?.let {
-                        context.startActivity(it)
-                    } ?: showToast("Feature 4 not loaded")
+                    val intent = Intent(context, Feature4Activity::class.java)
+                    context.startActivity(intent)
                 }
             }
         }

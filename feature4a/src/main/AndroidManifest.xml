@@ -3,7 +3,7 @@
     package = "com.example.feature4a">
 
     <application>
-        <activity android:name = ".feature4aActivity"></activity>
+        <activity android:name = ".Feature4aActivity"></activity>
     </application>
 
 </manifest>

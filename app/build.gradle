@@ -39,4 +39,8 @@ dependencies {
     implementation project(':feature2')
     implementation project(':feature3')
     implementation project(':feature4')
+        //for some reason dagger needs these references here of the internal modules https://github.com/google/dagger/issues/1439
+        implementation project(':feature4a')
+        implementation project(':feature4b')
+        implementation project(':feature4scope')
 }

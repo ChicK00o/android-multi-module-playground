@@ -9,7 +9,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class ActivityModule {
 
     @PerActivity
-    @ContributesAndroidInjector(modules = arrayOf(Feature4ActivityModule::class))
+    @ContributesAndroidInjector(modules = [Feature4ActivityModule::class])
     abstract fun contributefeature4ActivityInjector(): Feature4Activity
 
 }

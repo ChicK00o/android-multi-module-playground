@@ -1,5 +1,5 @@
 package com.example.feature4scope
 
-interface feature4ScopedData {
+interface iFeature4ScopedData {
     fun getStringValue() : String
 }

@@ -11,6 +11,7 @@ import com.example.core_utils.di.ViewModelFactory
 import com.example.core_utils.identity
 import com.example.core_utils.showToast
 import com.example.feature4b.databinding.ActivityFeature4bBinding
+import com.example.feature4scope.iFeature4ScopedData
 import dagger.android.support.DaggerAppCompatActivity
 import timber.log.Timber
 import javax.inject.Inject
@@ -34,6 +35,9 @@ class Feature4bActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var data: Feature4bData
+
+    @Inject
+    lateinit var impl: iFeature4ScopedData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,12 +69,13 @@ class Feature4bActivity : DaggerAppCompatActivity() {
             button {
                 text = "Print Identities"
                 onClick {
-                    intentNavigationManager.printHashCode("3")
-                    blackBoard.printHashCode("3")
-                    this.identity("3")
-                    mainActivityViewModel.identity("ViewModel 3")
-                    repository.identity("Repository 3")
-                    data.identity("Data 3")
+                    intentNavigationManager.printHashCode("4b")
+                    blackBoard.printHashCode("4b")
+                    this.identity("4b")
+                    mainActivityViewModel.identity("ViewModel 4b")
+                    repository.identity("Repository 4b")
+                    data.identity("Data 4b")
+                    impl.identity("interface 4b")
                 }
             }
 
@@ -86,20 +91,9 @@ class Feature4bActivity : DaggerAppCompatActivity() {
             }
 
             button {
-                text = "Move To Main Activity"
+                text = "Go back"
                 onClick {
                     finish()
-                }
-            }
-
-            button {
-                text = "Move To Feature 2"
-                onClick {
-                    val intent = intentNavigationManager.goToFeature2(context)
-                    intent?.let {
-                        context.startActivity(it)
-                        finish()
-                    } ?: showToast("Feature 2 not loaded")
                 }
             }
         }
