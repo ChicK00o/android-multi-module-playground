@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply from: '../config_module.gradle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -37,6 +37,4 @@ dependencies {
 //    implementation 'android.arch.lifecycle:viewmodel:1.1.1'
 
     implementation project(':core_utils')
-    implementation project(':feature2')
-    implementation project(':feature3')
 }
