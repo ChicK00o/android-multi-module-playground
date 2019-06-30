@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import antonkozyriatskyi.devdrawer.DevDrawer
+import timber.log.Timber
 import utils.showToast
 
 class MainActivity : AppCompatActivity() {
@@ -37,5 +38,8 @@ class MainActivity : AppCompatActivity() {
                 onItemSelected { item, position -> showToast("$item at $position") }
             }
         }
+
+        Timber.tag("LifeCycles")
+        Timber.d("Activity Created")
     }
 }
