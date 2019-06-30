@@ -3,7 +3,7 @@ package di
 import com.example.android_playground.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import di.utils.PerActivity
+import com.example.core_utils.di.PerActivity
 
 
 @Module

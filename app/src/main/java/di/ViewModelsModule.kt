@@ -6,8 +6,8 @@ import com.example.android_playground.MainActivityViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import di.utils.ViewModelFactory
-import di.utils.ViewModelKey
+import com.example.core_utils.di.ViewModelFactory
+import com.example.core_utils.di.ViewModelKey
 
 @Module
 abstract class ViewModelsModule {

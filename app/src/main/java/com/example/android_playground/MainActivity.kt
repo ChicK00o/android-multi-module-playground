@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.view.Gravity
 import antonkozyriatskyi.devdrawer.DevDrawer
 import dagger.android.support.DaggerAppCompatActivity
-import di.utils.ViewModelFactory
+import com.example.core_utils.di.ViewModelFactory
 import timber.log.Timber
-import utils.showToast
+import com.example.core_utils.showToast
 import javax.inject.Inject
 import com.example.android_playground.databinding.ActivityMainBinding
 

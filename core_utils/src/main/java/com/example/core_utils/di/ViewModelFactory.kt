@@ -1,4 +1,4 @@
-package di.utils
+package com.example.core_utils.di
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

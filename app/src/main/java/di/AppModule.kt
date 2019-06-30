@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import di.utils.NamedConstants
 import javax.inject.Named
 import javax.inject.Singleton
 

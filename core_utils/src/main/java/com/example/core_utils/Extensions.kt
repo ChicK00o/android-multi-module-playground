@@ -1,9 +1,8 @@
-package utils
+package com.example.core_utils
 
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.widget.Toast
-
 
 fun Context.showToast(msg: String) {
     toast(msg).show()

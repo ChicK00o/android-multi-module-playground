@@ -1,4 +1,4 @@
-package di.utils
+package com.example.core_utils.di
 
 import android.app.Activity
 import android.arch.lifecycle.LifecycleOwner
