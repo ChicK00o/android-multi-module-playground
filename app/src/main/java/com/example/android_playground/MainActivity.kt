@@ -68,9 +68,8 @@ class MainActivity : DaggerAppCompatActivity() {
             button {
                 text = "Move To Feature 2"
                 onClick {
-                    var intent = Intent(this.context, Feature2Activity::class.java)
-                    startActivity(intent)
-                    finish()
+                    var intent = Intent(context, Feature2Activity::class.java)
+                    context.startActivity(intent)
                 }
             }
         }
