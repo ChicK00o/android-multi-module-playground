@@ -3,23 +3,19 @@ package com.example.feature4a
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import antonkozyriatskyi.devdrawer.DevDrawer
 import com.example.core_data.BlackBoard
 import com.example.core_data.IntentNavigationManager
-import com.example.core_data.SubComponentsInjectors
+import com.example.core_utils.di.CoreDaggerActivity
 import com.example.core_utils.di.ViewModelFactory
 import com.example.core_utils.identity
 import com.example.core_utils.showToast
 import com.example.feature4a.databinding.ActivityFeature4aBinding
 import com.example.feature4scope.iFeature4ScopedData
-import dagger.android.AndroidInjection
-import dagger.android.support.DaggerAppCompatActivity
-import timber.log.Timber
 import javax.inject.Inject
 
-class Feature4aActivity : AppCompatActivity() {
+class Feature4aActivity : CoreDaggerActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -42,11 +38,7 @@ class Feature4aActivity : AppCompatActivity() {
     @Inject
     lateinit var impl: iFeature4ScopedData
 
-    var bundleName : String = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        bundleName = intent.extras!!.getString("injector")!!
-        SubComponentsInjectors.getAndroidActivityInjector(bundleName).maybeInject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feature4a)
 
@@ -76,13 +68,13 @@ class Feature4aActivity : AppCompatActivity() {
             button {
                 text = "Print Identities"
                 onClick {
-                    intentNavigationManager.printHashCode("$bundleName 4a")
-                    blackBoard.printHashCode("$bundleName 4a")
-                    this.identity("$bundleName 4a")
-                    mainActivityViewModel.identity("$bundleName ViewModel 4a")
-                    repository.identity("$bundleName Repository 4a")
-                    data.identity("$bundleName Data 4a")
-                    impl.identity("$bundleName interface 4a")
+                    intentNavigationManager.printHashCode("${getBaseBundle()} 4a")
+                    blackBoard.printHashCode("${getBaseBundle()} 4a")
+                    this.identity("${getBaseBundle()} 4a")
+                    mainActivityViewModel.identity("${getBaseBundle()} ViewModel 4a")
+                    repository.identity("${getBaseBundle()} Repository 4a")
+                    data.identity("${getBaseBundle()} Data 4a")
+                    impl.identity("${getBaseBundle()} interface 4a")
                 }
             }
 

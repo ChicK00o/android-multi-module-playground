@@ -7,15 +7,14 @@ import android.view.Gravity
 import antonkozyriatskyi.devdrawer.DevDrawer
 import com.example.core_data.BlackBoard
 import com.example.core_data.IntentNavigationManager
+import com.example.core_utils.di.CoreDaggerActivity
 import com.example.core_utils.di.ViewModelFactory
 import com.example.core_utils.identity
 import com.example.core_utils.showToast
 import com.example.feature2.databinding.ActivityFeature2Binding
-import dagger.android.support.DaggerAppCompatActivity
-import timber.log.Timber
 import javax.inject.Inject
 
-class Feature2Activity : DaggerAppCompatActivity() {
+class Feature2Activity : CoreDaggerActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory

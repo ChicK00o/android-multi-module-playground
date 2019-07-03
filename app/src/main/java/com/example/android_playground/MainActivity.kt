@@ -6,7 +6,6 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.Gravity
 import antonkozyriatskyi.devdrawer.DevDrawer
-import dagger.android.support.DaggerAppCompatActivity
 import com.example.core_utils.di.ViewModelFactory
 import timber.log.Timber
 import com.example.core_utils.showToast
@@ -14,12 +13,13 @@ import javax.inject.Inject
 import com.example.android_playground.databinding.ActivityMainBinding
 import com.example.core_data.BlackBoard
 import com.example.core_data.IntentNavigationManager
+import com.example.core_utils.di.CoreDaggerActivity
 import com.example.core_utils.identity
 import com.example.feature2.Feature2Activity
 import com.example.feature3.Feature3Activity
 import com.example.feature4.Feature4Activity
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : CoreDaggerActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -92,7 +92,7 @@ class MainActivity : DaggerAppCompatActivity() {
             button {
                 text = "Move To Feature 2"
                 onClick {
-                    val intent = Intent(context, Feature2Activity::class.java)
+                    val intent = enrichIntent(Intent(context, Feature2Activity::class.java))
                     context.startActivity(intent)
                 }
             }
@@ -100,7 +100,7 @@ class MainActivity : DaggerAppCompatActivity() {
             button {
                 text = "Move To Feature 3"
                 onClick {
-                    val intent = Intent(context, Feature3Activity::class.java)
+                    val intent = enrichIntent(Intent(context, Feature3Activity::class.java))
                     context.startActivity(intent)
                 }
             }
@@ -108,7 +108,7 @@ class MainActivity : DaggerAppCompatActivity() {
             button {
                 text = "Move To Feature 4"
                 onClick {
-                    val intent = Intent(context, Feature4Activity::class.java)
+                    val intent = enrichIntent(Intent(context, Feature4Activity::class.java))
                     context.startActivity(intent)
                 }
             }

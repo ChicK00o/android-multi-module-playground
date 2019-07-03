@@ -1,7 +1,6 @@
 package com.example.feature3.di
 
-import com.example.core_utils.di.PerActivity
-import com.example.core_utils.di.PerFeature
+import com.example.core_utils.di.FeatureScope
 import com.example.feature3.Feature3Activity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -9,7 +8,7 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ActivityModule {
 
-    @PerFeature
+    @FeatureScope
     @ContributesAndroidInjector(modules = arrayOf(
 //        Feature3ActivityModule::class
 //        ,

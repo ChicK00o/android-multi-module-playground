@@ -11,14 +11,14 @@ import dagger.Module
 @Module
 abstract class BaseActivityModule {
     @Binds
-    @PerActivity
-    internal abstract fun activity(appCompatActivity: AppCompatActivity): Activity
+    @ActivityScope
+    abstract fun activity(appCompatActivity: AppCompatActivity): Activity
 
     @Binds
-    @PerActivity
-    internal abstract fun activityContext(activity: Activity): Context
+    @ActivityScope
+    abstract fun activityContext(activity: Activity): Context
 
     @Binds
-    @PerActivity
-    internal abstract fun activityLifeCycleOwner(appCompatActivity: AppCompatActivity): LifecycleOwner
+    @ActivityScope
+    abstract fun activityLifeCycleOwner(appCompatActivity: AppCompatActivity): LifecycleOwner
 }

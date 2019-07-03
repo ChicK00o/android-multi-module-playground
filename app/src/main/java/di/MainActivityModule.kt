@@ -5,11 +5,11 @@ import com.example.android_playground.MainActivity
 import dagger.Binds
 import dagger.Module
 import com.example.core_utils.di.BaseActivityModule
-import com.example.core_utils.di.PerActivity
+import com.example.core_utils.di.ActivityScope
 
 @Module(includes = arrayOf(BaseActivityModule::class))
 abstract class MainActivityModule {
     @Binds
-    @PerActivity
+    @ActivityScope
     internal abstract fun appCompatActivity(mainActivity: MainActivity): AppCompatActivity
 }

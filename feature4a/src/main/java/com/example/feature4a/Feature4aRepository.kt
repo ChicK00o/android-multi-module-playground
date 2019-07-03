@@ -1,10 +1,9 @@
 package com.example.feature4a
 
-import com.example.core_utils.di.PerFeature
+import com.example.core_utils.di.FeatureScope
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@PerFeature
+@FeatureScope
 class Feature4aRepository @Inject constructor(
     feature4aData: Feature4aData
 ) {

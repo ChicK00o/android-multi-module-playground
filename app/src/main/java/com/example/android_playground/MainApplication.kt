@@ -2,8 +2,8 @@ package com.example.android_playground
 
 import android.content.Context
 import android.support.multidex.MultiDex
+import com.example.core_utils.di.CoreDaggerApplication
 import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
 import di.AppComponent
 import di.AppModule
 import di.DaggerAppComponent
@@ -11,11 +11,11 @@ import timber.log.Timber.DebugTree
 import timber.log.Timber
 
 
-class MainApplication : DaggerApplication() {
+class MainApplication : CoreDaggerApplication() {
 
     private var applicationComponent: AppComponent? = null
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+    override fun applicationInjector(): AndroidInjector<out CoreDaggerApplication> {
         @Suppress("DEPRECATION")
         if(applicationComponent == null)
             applicationComponent = DaggerAppComponent
