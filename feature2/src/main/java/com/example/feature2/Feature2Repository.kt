@@ -1,9 +1,9 @@
 package com.example.feature2
 
+import com.example.core_utils.di.AppScope
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@AppScope
 class Feature2Repository @Inject constructor(
     feature2Data: Feature2Data
 ) {

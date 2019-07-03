@@ -1,9 +1,9 @@
 package com.example.android_playground
 
+import com.example.core_utils.di.AppScope
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@AppScope
 class MainActivityRepository @Inject constructor(
     mainActivityData: MainActivityData
 ) {

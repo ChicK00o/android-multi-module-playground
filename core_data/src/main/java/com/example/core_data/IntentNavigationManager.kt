@@ -3,11 +3,11 @@ package com.example.core_data
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import com.example.core_utils.di.AppScope
 import com.example.core_utils.identity
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@AppScope
 class IntentNavigationManager @Inject constructor() {
 
     fun printHashCode(postfix: String) {
