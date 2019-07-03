@@ -1,21 +1,35 @@
 package com.example.feature3
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.Gravity
 import antonkozyriatskyi.devdrawer.DevDrawer
 import com.example.core_data.BlackBoard
 import com.example.core_data.IntentNavigationManager
+import com.example.core_data.SubComponentsInjectors
 import com.example.core_utils.di.ViewModelFactory
 import com.example.core_utils.identity
 import com.example.core_utils.showToast
 import com.example.feature3.databinding.ActivityFeature3Binding
+import com.example.feature4a.Feature4aActivity
+import com.example.feature4b.Feature4bActivity
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import dagger.android.support.DaggerAppCompatActivity
 import timber.log.Timber
 import javax.inject.Inject
 
-class   Feature3Activity : DaggerAppCompatActivity() {
+class Feature3Activity : DaggerAppCompatActivity(), HasActivityInjector {
+
+    @Inject lateinit var injector : DispatchingAndroidInjector<Activity>
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return injector
+    }
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -38,6 +52,7 @@ class   Feature3Activity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feature3)
+        SubComponentsInjectors.addAndroidActivityInjector("feature3", injector)
 
         mainActivityViewModel = ViewModelProviders.of(this, viewModelFactory)[Feature3ActivityViewModel::class.java]
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_feature3)
@@ -100,6 +115,24 @@ class   Feature3Activity : DaggerAppCompatActivity() {
                         context.startActivity(it)
                         finish()
                     } ?: showToast("Feature 2 not loaded")
+                }
+            }
+
+            button {
+                text = "Move To Feature 4a"
+                onClick {
+                    val intent = Intent(context, Feature4aActivity::class.java)
+                    intent.putExtra("injector", "feature3")
+                    context.startActivity(intent)
+                }
+            }
+
+            button {
+                text = "Move To Feature 4b"
+                onClick {
+                    val intent = Intent(context, Feature4bActivity::class.java)
+                    intent.putExtra("injector", "feature3")
+                    context.startActivity(intent)
                 }
             }
         }

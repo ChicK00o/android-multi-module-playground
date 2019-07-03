@@ -1,4 +1,4 @@
-package com.example.feature4
+package com.example.feature3
 
 import com.example.core_utils.di.PerActivity
 import com.example.core_utils.di.PerFeature
@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @PerFeature
-class Feature4ScopedDataImpl @Inject constructor() : iFeature4ScopedData {
+class Feature3ScopedDataImpl @Inject constructor() : iFeature4ScopedData {
     override fun getStringValue(): String {
         return "Feature 4 is Implementing this"
     }

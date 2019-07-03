@@ -1,5 +1,6 @@
 package com.example.feature4
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -8,6 +9,7 @@ import android.view.Gravity
 import antonkozyriatskyi.devdrawer.DevDrawer
 import com.example.core_data.BlackBoard
 import com.example.core_data.IntentNavigationManager
+import com.example.core_data.SubComponentsInjectors
 import com.example.core_utils.di.ViewModelFactory
 import com.example.core_utils.identity
 import com.example.core_utils.showToast
@@ -15,11 +17,20 @@ import com.example.feature4.databinding.ActivityFeature4Binding
 import com.example.feature4a.Feature4aActivity
 import com.example.feature4b.Feature4bActivity
 import com.example.feature4scope.iFeature4ScopedData
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import dagger.android.support.DaggerAppCompatActivity
 import timber.log.Timber
 import javax.inject.Inject
 
-class Feature4Activity : DaggerAppCompatActivity() {
+class Feature4Activity : DaggerAppCompatActivity(), HasActivityInjector {
+
+    @Inject lateinit var injector : DispatchingAndroidInjector<Activity>
+
+    override fun activityInjector(): AndroidInjector<Activity> {
+        return injector
+    }
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -45,6 +56,7 @@ class Feature4Activity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feature4)
+        SubComponentsInjectors.addAndroidActivityInjector("feature4", injector)
 
         mainActivityViewModel = ViewModelProviders.of(this, viewModelFactory)[Feature4ActivityViewModel::class.java]
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_feature4)
@@ -104,6 +116,7 @@ class Feature4Activity : DaggerAppCompatActivity() {
                 text = "Move To Feature 4a"
                 onClick {
                     val intent = Intent(context, Feature4aActivity::class.java)
+                    intent.putExtra("injector", "feature4")
                     context.startActivity(intent)
                 }
             }
@@ -112,6 +125,7 @@ class Feature4Activity : DaggerAppCompatActivity() {
                 text = "Move To Feature 4b"
                 onClick {
                     val intent = Intent(context, Feature4bActivity::class.java)
+                    intent.putExtra("injector", "feature4")
                     context.startActivity(intent)
                 }
             }

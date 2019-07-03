@@ -34,4 +34,7 @@ dependencies {
 
     implementation project(':core_utils')
     implementation project(':core_data')
+    implementation project(':feature4a')
+    implementation project(':feature4b')
+    implementation project(':feature4scope')
 }
